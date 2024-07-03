@@ -1,37 +1,35 @@
-/* eslint-disable prettier/prettier */
-import { Empty, Spin, Table } from "antd"
-import React, { useCallback } from "react"
-import { PageProps } from "../../model/application/props"
-import { setAllGlobalKey } from "../../store"
-import { useAppDispatch, useAppSelector } from "../../store/hooks"
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Empty, Spin, Table } from "antd";
+import React, { useCallback } from "react";
+import { PageProps } from "../../model/application/props";
+import { setAllGlobalKey } from "../../store";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 export const PageTable: React.FC<PageProps.TableData> = ({
   column,
   dataSource,
   loading,
-  pageSize,
   total,
   shouldExpand,
   scrollX,
   emptyHeadingText,
   emptyParagraphText,
-  rowSelection
+  rowSelection,
 }) => {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const state = useAppSelector((state) => {
-    return state.global
-  })
+    return state.global;
+  });
   const onRowSelect = (_rowIndex: number, record: any) => {
     if (shouldExpand) {
       dispatch(
         setAllGlobalKey({
           ...state,
-          expand: true,
           record,
-        }),
-      )
+        })
+      );
     }
-  }
+  };
 
   const onPaginate = useCallback(
     (page: number, pageSize: number) => {
@@ -39,12 +37,12 @@ export const PageTable: React.FC<PageProps.TableData> = ({
         setAllGlobalKey({
           ...state,
           page,
-          pageSize
-        }),
-      )
+          pageSize,
+        })
+      );
     },
-    [dispatch, state],
-  )
+    [dispatch, state]
+  );
 
   return (
     <Spin spinning={loading}>
@@ -78,9 +76,9 @@ export const PageTable: React.FC<PageProps.TableData> = ({
         onRow={(record: any, rowIndex: number | undefined) => {
           return {
             onClick: async () => {
-              onRowSelect(rowIndex as number, record)
+              onRowSelect(rowIndex as number, record);
             },
-          }
+          };
         }}
         rowSelection={rowSelection}
         locale={{
@@ -102,5 +100,5 @@ export const PageTable: React.FC<PageProps.TableData> = ({
         }}
       />
     </Spin>
-  )
-}
+  );
+};

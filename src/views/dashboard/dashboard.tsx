@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import TransactionIncrease from "../../assets/icons/TransactionIncrease";
 import TransactionGrowthRate from "../../assets/icons/TransactionGrowthRate";
 import Header from "../../common/components/Header";
 import TotalTransactions from "../../assets/icons/TotalTransactions";
 import SuccessfulTransactions from "../../assets/icons/SuccessfulTransactions";
 import FailedTransactions from "../../assets/icons/FailedTransactions";
+import TransactionsTable from "../../common/components/TransactionsTable";
 
 const Dashboard = () => {
   const cardData = [
@@ -31,6 +33,7 @@ const Dashboard = () => {
       icon: <FailedTransactions />,
     },
   ];
+
   return (
     <div>
       <Header />
@@ -66,6 +69,7 @@ const Dashboard = () => {
           </div>
         ))}
       </div>
+      <TransactionsTable />{" "}
     </div>
   );
 };

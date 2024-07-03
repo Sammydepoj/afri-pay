@@ -1,23 +1,24 @@
-import { TableRowSelection } from "antd/es/table/interface"
-import { PageTable } from "./table"
-import { ApiResponse } from "model/client/response"
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { TableRowSelection } from "antd/es/table/interface";
+import { PageTable } from "./table";
+import { ApiResponse } from "model/client/response";
 
 interface Props {
-  column?: any[]
-  dataSource?: any[]
-  tableName?: string
-  btn?: any
-  forms?: any
-  loading?: boolean
-  pageSize?: number
-  shouldExpand?: boolean
-  scrollX?: number
-  isNotPaginated?: boolean
-  total?: number
-  url?: string
-  emptyParagraphText?: string
-  emptyHeadingText?: string
-  rowSelection?: TableRowSelection<ApiResponse.TerminalProcessor> | undefined
+  column?: any[];
+  dataSource?: any[];
+  tableName?: string;
+  btn?: any;
+  forms?: any;
+  loading?: boolean;
+  pageSize?: number;
+  shouldExpand?: boolean;
+  scrollX?: number;
+  isNotPaginated?: boolean;
+  total?: number;
+  url?: string;
+  emptyParagraphText?: string;
+  emptyHeadingText?: string;
+  rowSelection?: TableRowSelection<ApiResponse.TerminalProcessor> | undefined;
 }
 
 export const TableComponent: React.FC<Props> = ({
@@ -60,5 +61,5 @@ export const TableComponent: React.FC<Props> = ({
         emptyParagraphText={emptyParagraphText}
       />
     </div>
-  )
-}
+  );
+};

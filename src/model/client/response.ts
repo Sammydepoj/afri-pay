@@ -1,4 +1,5 @@
-/* eslint-disable prettier/prettier */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export namespace ApiResponse {
   export class API {
     status?: string
