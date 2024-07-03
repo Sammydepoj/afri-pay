@@ -34,6 +34,7 @@ export enum MENU_NAMES {
 
 export enum ROUTE {
   INDEX = "/",
+  DASHBOARD = "/dashboard",
   PAGE_NOT_FOUND = "*",
 }
 

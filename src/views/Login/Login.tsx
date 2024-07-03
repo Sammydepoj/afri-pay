@@ -1,7 +1,10 @@
 import { Button, Form, Input } from "antd";
 import Logo from "../../assets/logo.png";
+import { useNavigate } from "react-router-dom";
+import { ROUTE } from "../../common/constants";
 
 const Login = () => {
+  const navigate = useNavigate();
   return (
     <section className="relative min-h-[100svh] p-8 flex flex-col items-center justify-center">
       <img src={Logo} className="absolute top-6 left-8" />
@@ -45,6 +48,9 @@ const Login = () => {
           <Button
             htmlType="submit"
             className="bg-[#374D41] hover:!bg-[#374D41] !text-white py-6 font-[ibm-medium] "
+            onClick={() => {
+              navigate(ROUTE.DASHBOARD, { replace: true });
+            }}
           >
             Log in
           </Button>
