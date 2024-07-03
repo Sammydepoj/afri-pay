@@ -1,0 +1,26 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@font-face {
+  font-family: "ibm-bold";
+  src: url("./assets/fonts/IBMPlexSans-Bold.ttf");
+}
+
+@font-face {
+  font-family: "ibm-medium";
+  src: url("./assets/fonts/IBMPlexSans-Medium.ttf");
+}
+@font-face {
+  font-family: "ibm-regular";
+  src: url("./assets/fonts/IBMPlexSans-Regular.ttf");
+}
+@font-face {
+  font-family: "ibm-semibold";
+  src: url("./assets/fonts/IBMPlexSans-SemiBold.ttf");
+}
+
+html,
+body {
+  font-family: "ibm-regular";
+}
