@@ -22,13 +22,10 @@ interface Props {
 }
 
 export const TableComponent: React.FC<Props> = ({
-  btn,
   column,
   dataSource,
-  forms,
   loading,
   pageSize,
-  tableName,
   shouldExpand,
   scrollX,
   isNotPaginated,
@@ -38,15 +35,7 @@ export const TableComponent: React.FC<Props> = ({
   rowSelection,
 }) => {
   return (
-    <div className="bg-white w-full rounded-lg my-5 table-shadow">
-      <div className="flex justify-between items-center px-3 sm:px-10 py-5">
-        <h1 className="text-sm md:text-xl text-[#272848] font-semibold">
-          {tableName}
-        </h1>
-        {btn}
-      </div>
-      {forms}
-
+    <div className="bg-white w-full rounded-lg  table-shadow">
       <PageTable
         column={column}
         loading={loading}

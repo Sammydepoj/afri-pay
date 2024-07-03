@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Dropdown, Input } from "antd";
+import { Button, Dropdown, Input } from "antd";
 import { ColumnProps } from "antd/es/table";
 import { TableComponent } from "./table-component";
 import more from "../../assets/svg/more-action.svg";
@@ -8,6 +8,9 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { setAllGlobalKey } from "../../store";
 import DownloadModal from "../../views/dashboard/DownloadModal";
 import SearchIcon from "../../assets/icons/SearchIcon";
+import FilterIcon from "../../assets/icons/FilterIcon";
+import CalendarIcon from "../../assets/icons/CalendarIcon";
+import DownloadIcon from "../../assets/icons/DownloadIcon";
 
 type TableDataTypes = {
   referenceNumber: string;
@@ -101,7 +104,7 @@ const TransactionsTable = () => {
       dataIndex: "",
       key: "6",
       fixed: "right",
-      width: "100px",
+      width: "70px",
       render: () => {
         return (
           <Dropdown
@@ -314,10 +317,28 @@ const TransactionsTable = () => {
     },
   ];
   return (
-    <div className="mx-16">
+    <div className="mx-4 md:mx-16">
       {state.showDownloadModal && <DownloadModal />}
-      <div className="border-3 mt-4">
-        <Input addonBefore={<SearchIcon />} className=" max-w-[20rem]" />
+      <div className="border-3 mt-8 flex items-center justify-between  mb-4">
+        <div className="flex items-center gap-5">
+          <Input
+            addonBefore={<SearchIcon />}
+            placeholder="Search"
+            className=" max-w-[20rem]"
+          />
+          <Button icon={<FilterIcon />} className="py-6">
+            Filter By
+          </Button>
+          <Button icon={<CalendarIcon />} className="py-6">
+            Select dates
+          </Button>
+        </div>
+        <Button
+          icon={<DownloadIcon />}
+          className="py-6 bg-[#374D41] hover:!bg-[#374D41] text-white hover:!text-white"
+        >
+          Download
+        </Button>
       </div>
       <TableComponent dataSource={dataSource} loading={false} column={column} />
     </div>
