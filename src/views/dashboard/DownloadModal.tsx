@@ -1,6 +1,8 @@
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { PageModal } from "../../common/components/modal";
 import { setAllGlobalKey } from "../../store";
+import { Button } from "antd";
+import DownloadIcon from "../../assets/icons/DownloadIcon";
 
 const DownloadModal = () => {
   const dispatch = useAppDispatch();
@@ -40,6 +42,14 @@ const DownloadModal = () => {
             </p>
           </span>
         ))}
+      </div>
+      <div className="flex items-center justify-center">
+        <Button
+          icon={<DownloadIcon />}
+          className="py-6 bg-[#374D41] hover:!bg-[#374D41] text-white hover:!text-white"
+        >
+          Download
+        </Button>
       </div>
     </PageModal>
   );
