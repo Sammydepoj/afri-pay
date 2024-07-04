@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button, Dropdown, Input } from "antd";
+import { Button, DatePicker, Dropdown, Input, Popover } from "antd";
 import { ColumnProps } from "antd/es/table";
 import { TableComponent } from "./table-component";
 import more from "../../assets/svg/more-action.svg";
@@ -26,6 +26,7 @@ const TransactionsTable = () => {
   const state = useAppSelector((state) => {
     return state.global;
   });
+  const { RangePicker } = DatePicker;
   const column: ColumnProps<TableDataTypes>[] = [
     {
       title: "Reference number",
@@ -326,19 +327,59 @@ const TransactionsTable = () => {
             placeholder="Search"
             className=" max-w-[20rem]"
           />
-          <Button icon={<FilterIcon />} className="py-6">
-            Filter By
-          </Button>
-          <Button icon={<CalendarIcon />} className="py-6">
-            Select dates
-          </Button>
+          <Popover
+            content={
+              <div className="flex flex-col gap-4">
+                <button>Successful</button>
+                <button>Failed</button>
+              </div>
+            }
+            placement="bottom"
+            trigger={"hover"}
+            arrow={false}
+          >
+            <Button icon={<FilterIcon />} className="py-6">
+              Filter By
+            </Button>
+          </Popover>
+          {/* <Popover
+            content={
+              <div className="flex flex-col gap-4">
+                <RangePicker />
+              </div>
+            }
+            placement="top"
+            trigger={"hover"}
+            arrow={false}
+          >
+            <Button icon={<CalendarIcon />} className="py-6">
+              Select dates
+            </Button>
+          </Popover> */}
+          <RangePicker
+            suffixIcon={<FilterIcon />}
+            className="py-3"
+            placeholder={["Select dates","Selct dates"]}
+          />
         </div>
-        <Button
-          icon={<DownloadIcon />}
-          className="py-6 bg-[#374D41] hover:!bg-[#374D41] text-white hover:!text-white"
+        <Popover
+          content={
+            <div className="flex flex-col gap-4">
+              <button>This page</button>
+              <button>All transactions</button>
+            </div>
+          }
+          placement="bottom"
+          trigger={"hover"}
+          arrow={false}
         >
-          Download
-        </Button>
+          <Button
+            icon={<DownloadIcon />}
+            className="py-6 bg-[#374D41] hover:!bg-[#374D41] text-white hover:!text-white"
+          >
+            Download
+          </Button>
+        </Popover>
       </div>
       <TableComponent dataSource={dataSource} loading={false} column={column} />
     </div>
