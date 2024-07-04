@@ -43,10 +43,10 @@ const Dashboard = () => {
           Manage and get the records of your pos transactions.
         </p>
       </div>
-      <div className="px-16 flex items-center gap-6 overflow-x-auto">
+      <div className="px-16 flex items-center gap-6 overflow-x-auto justify-between">
         {cardData.map((item, index) => (
           <div
-            className="border border-[#DEDFEC] rounded-xl max-w-[292px] p-6"
+            className="border border-[#DEDFEC] rounded-xl max-w-[292px] w-full p-6"
             key={index}
           >
             <span className="flex gap-2 items-center">

@@ -1,5 +1,5 @@
 import { ROUTE } from "../common/constants";
-import { Login, Dashboard } from "./pageRoutes";
+import { Login, Dashboard, UserMgt } from "./pageRoutes";
 
 export const routes = [
   {
@@ -9,5 +9,9 @@ export const routes = [
   {
     element: <Dashboard />,
     path: ROUTE.DASHBOARD,
+  },
+  {
+    element: <UserMgt />,
+    path: ROUTE.USER_MGT,
   },
 ];

@@ -32,5 +32,6 @@ export namespace State {
     selectField?: string;
     selectedRowKeys?: React.Key[];
     showDownloadModal?: boolean;
+    showAddUserModal?: boolean;
   }
 }
