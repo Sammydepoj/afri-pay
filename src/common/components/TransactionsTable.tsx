@@ -357,7 +357,7 @@ const TransactionsTable = () => {
             </Button>
           </Popover> */}
           <RangePicker
-            suffixIcon={<FilterIcon />}
+            suffixIcon={<CalendarIcon />}
             className="py-3"
             placeholder={["Select dates","Selct dates"]}
           />
