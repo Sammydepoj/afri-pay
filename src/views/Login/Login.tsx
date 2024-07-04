@@ -1,5 +1,5 @@
 import { Button, Form, Input } from "antd";
-import Logo from "../../assets/logo.png";
+// import Logo from "../../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import { ROUTE } from "../../common/constants";
 
@@ -7,9 +7,9 @@ const Login = () => {
   const navigate = useNavigate();
   return (
     <section className="relative min-h-[100svh] p-8 flex flex-col items-center justify-center">
-      <img src={Logo} className="absolute top-6 left-8" />
+      {/* <img src={Logo} className="absolute top-6 left-8" /> */}
       <div className="max-w-[521px] w-full p-8 shadow-lg rounded-3xl">
-        <img src={Logo} className="mx-auto" />
+        {/* <img src={Logo} className="mx-auto" /> */}
         <h3 className="text-[#151414] text-4xl text-center mt-16 mb-3 font-[ibm-bold]">
           Log in
         </h3>
