@@ -6,13 +6,8 @@ import React from "react";
 export namespace State {
   export interface Authentication {
     request?: ApiRequest.Auth;
-    isPasswordLength: boolean;
-    isUpperCase: boolean;
-    isLowerCase: boolean;
-    hasNumber: boolean;
-    isSpecialChar: boolean;
     postUrl: string;
-    formMethod: string;
+    formMethod?: string;
     token?: string;
   }
 

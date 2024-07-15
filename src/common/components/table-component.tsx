@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { TableRowSelection } from "antd/es/table/interface";
 import { PageTable } from "./table";
-import { ApiResponse } from "model/client/response";
 
 interface Props {
   column?: any[];
@@ -18,7 +16,7 @@ interface Props {
   url?: string;
   emptyParagraphText?: string;
   emptyHeadingText?: string;
-  rowSelection?: TableRowSelection<ApiResponse.TerminalProcessor> | undefined;
+  rowSelection?: any;
 }
 
 export const TableComponent: React.FC<Props> = ({

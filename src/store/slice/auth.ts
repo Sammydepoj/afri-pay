@@ -5,11 +5,6 @@ import { Auth } from "../../model/application/payload";
 import { ApiRequest } from "../../model/client/request";
 
 const initialState: State.Authentication = {
-  isPasswordLength: false,
-  isUpperCase: false,
-  isLowerCase: false,
-  hasNumber: false,
-  isSpecialChar: false,
   postUrl: "",
   formMethod: "",
 };

@@ -1,3 +1,5 @@
+import { Encryption } from "./utils/encryption";
+
 export enum MENU_KEYS {
   DASHBOARD = "1",
   PROFILE = "2",
@@ -35,30 +37,8 @@ export enum MENU_NAMES {
 export enum ROUTE {
   INDEX = "/",
   DASHBOARD = "/dashboard",
-  USER_MGT="/users",
+  USER_MGT = "/users",
   PAGE_NOT_FOUND = "*",
-}
-
-export enum BREADCRUMB {
-  DASHBOARD = "Home > Dashboard",
-  PROFILE = "Home > Profile",
-  TRANSACTION = "Home > Transactions",
-  TERMINAL_MGT = "Home > System Terminal Management",
-  PROCESSOR_TERMINAL_MGT = "Home > Terminals > Processor Terminal Management",
-  TRANSACTION_ROUTING = "Home > Transaction Routing",
-  CHARGE_CONFIGURATION = "Home > Charge Configurations",
-  SYSTEM_USERS = "Home > System Users",
-  PROCESSOR = "Home > Processor Management",
-}
-
-export enum TRANSACTION_CONFIGURATION_TYPES {
-  DIRECT = "Direct",
-  AUTOMATIC = "Automatic",
-  CUSTOM = "Custom",
-}
-export enum CHARGE_CONFIGURATION_TYPES {
-  FLAT = "Flat",
-  PERCENTAGE = "Percentage",
 }
 
 export enum FORM_METHODS {
@@ -66,6 +46,32 @@ export enum FORM_METHODS {
   GET = "GET",
 }
 
-export enum ResponseCode {
-  SUCCESS = "00",
+export const RESPONSE_CODE = {
+  successful: "00",
+  badRequest: "400",
+  noData: "201",
+  internalServerError: "500",
+  dataDuplication: " 230",
+  unAuthorized: "401",
+  invalidToken: "400",
+};
+export interface UserInfo {
+  firstName: string;
+  lastName: string;
+  email: string;
+  role: string;
 }
+export const retrieveUserInfoFromStorage = () => {
+  const userDetails: UserInfo =
+    sessionStorage.getItem(import.meta.env.VITE_APP_USER_INFO as string) &&
+    sessionStorage.getItem(import.meta.env.VITE_APP_USER_INFO as string)
+      ?.length &&
+    JSON.parse(
+      Encryption.decrypt(
+        sessionStorage.getItem(
+          import.meta.env.VITE_APP_USER_INFO as string
+        ) as string
+      )
+    );
+  return { userDetails };
+};

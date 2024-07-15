@@ -28,6 +28,7 @@ const Header = () => {
             <button
               onClick={() => {
                 navigate(ROUTE.INDEX, { replace: true });
+                sessionStorage.clear();
               }}
             >
               Log out

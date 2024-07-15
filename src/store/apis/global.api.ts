@@ -3,20 +3,23 @@ import { FORM_METHODS, ROUTE } from "../../common/constants";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Encryption } from "../../common/utils/encryption";
 
-const userToken = () => {
+export const baseUrl = import.meta.env.VITE_APP_BASE_URL;
+
+export const userToken = () => {
   if (
-    sessionStorage.getItem("*****") &&
-    sessionStorage.getItem("*****")?.length
+    sessionStorage.getItem(import.meta.env.VITE_APP_TOKEN) &&
+    sessionStorage.getItem(import.meta.env.VITE_APP_TOKEN)?.length
   ) {
     return JSON.parse(
-      JSON.parse(Encryption.decrypt(sessionStorage.getItem("*****") as string))
+      Encryption.decrypt(
+        sessionStorage.getItem(import.meta.env.VITE_APP_TOKEN) as string
+      )
     );
   }
   sessionStorage.clear();
   window.location.href = ROUTE.INDEX;
-  return Promise.reject(new Error("No token in the storage"));
+  return;
 };
-export const baseUrl = import.meta.env.VITE_APP_API_BASE_URL;
 
 type BaseQueryType = ReturnType<typeof fetchBaseQuery>;
 
@@ -33,8 +36,13 @@ export const baseQueryWithReauth: (baseQuery: BaseQueryType) => BaseQueryType =
 export const baseQuery = fetchBaseQuery({
   baseUrl,
   prepareHeaders: (headers) => {
-    headers.set("Authorization", `Bearer ${userToken()}`);
-    return headers;
+    if (
+      sessionStorage.getItem(import.meta.env.VITE_APP_TOKEN) &&
+      sessionStorage.getItem(import.meta.env.VITE_APP_TOKEN)?.length
+    ) {
+      headers.set("Authorization", `Bearer ${userToken()}`);
+      return headers;
+    }
   },
 });
 

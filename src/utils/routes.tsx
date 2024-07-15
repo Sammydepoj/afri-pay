@@ -1,5 +1,6 @@
 import { ROUTE } from "../common/constants";
 import { Login, Dashboard, UserMgt } from "./pageRoutes";
+import { ProtectedRoutes } from "./protected-routes";
 
 export const routes = [
   {
@@ -7,11 +8,19 @@ export const routes = [
     path: ROUTE.INDEX,
   },
   {
-    element: <Dashboard />,
+    element: (
+      <ProtectedRoutes>
+        <Dashboard />
+      </ProtectedRoutes>
+    ),
     path: ROUTE.DASHBOARD,
   },
   {
-    element: <UserMgt />,
+    element: (
+      <ProtectedRoutes>
+        <UserMgt />
+      </ProtectedRoutes>
+    ),
     path: ROUTE.USER_MGT,
   },
 ];
