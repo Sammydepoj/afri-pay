@@ -14,4 +14,13 @@ export namespace ApiResponse {
     lastName: string;
     refreshToken: string;
   }
+  export class Processor {
+    id?: number;
+    name?: string;
+    ip?: string;
+    port?: number;
+    allowKeyExchange?: boolean;
+    cardSchemes?: string[];
+    createdDate?: string;
+  }
 }
