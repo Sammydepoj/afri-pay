@@ -15,11 +15,7 @@ pipeline {
     stage('remove-old') {
       steps {
         script {
-          if ("${FIRST_BUILD}" == 'true') {
-                echo 'Running first build ignoring removal'
-            } else {
                 sh 'docker rm -f afripay-frontend-service'
-          }
         }
       }
     }
