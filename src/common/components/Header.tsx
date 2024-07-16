@@ -18,13 +18,13 @@ const Header = () => {
         trigger="hover"
         content={
           <div className="flex flex-col gap-4">
-            {/* <button
+            <button
               onClick={() => {
                 navigate(ROUTE.USER_MGT);
               }}
             >
               Manage Users
-            </button> */}
+            </button>
             <button
               onClick={() => {
                 navigate(ROUTE.INDEX, { replace: true });
