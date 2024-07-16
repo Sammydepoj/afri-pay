@@ -14,6 +14,13 @@ RUN npm install react-scripts --force
 # Copy the application code to the working directory
 COPY . .
 
+# Set the environment variables
+ARG VITE_APP_BASE_URL
+ARG VITE_APP_ENCRYPTION_SECRET_KEY
+
+ENV VITE_APP_BASE_URL=$VITE_APP_BASE_URL
+ENV VITE_APP_ENCRYPTION_SECRET_KEY=$VITE_APP_ENCRYPTION_SECRET_KEY
+
 # Build the Vite.js app for production
 RUN npm run build
 
