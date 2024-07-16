@@ -22,7 +22,7 @@ pipeline {
     stage('run') {
       steps {
         sh """
-          docker run -d --restart always -p ${EXPOSE_PORT}:80 \
+          docker run -d --restart always -p 5050:80 \
           -e TZ=Africa/Lagos \
           -e VITE_APP_BASE_URL=${BASE_URL} \
           -e VITE_APP_ENCRYPTION_SECRET_KEY=${SECRET_KEY} \
