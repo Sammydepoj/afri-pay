@@ -30,5 +30,10 @@ pipeline {
         """
       }
     }
+    stage('debug') {
+      steps {
+        sh 'printenv'
+      }
+    }
   }
 }
