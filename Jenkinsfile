@@ -24,6 +24,8 @@ pipeline {
         sh """
           docker run -d --restart always -p 5050:80 \
           -e TZ=Africa/Lagos \
+          -e VITE_APP_BASE_URL=${BASE_URL} \
+          -e VITE_APP_ENCRYPTION_SECRET_KEY=${SECRET_KEY} \
          --name afripay-frontend-service afripay-frontend-docker
         """
       }
