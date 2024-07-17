@@ -3,9 +3,10 @@ import Dropdown from "../../assets/icons/Dropdown";
 // import Logo from "../../assets/logo.png";
 import userImg from "../../assets/svg/user-img.svg";
 import { useNavigate } from "react-router-dom";
-import { ROUTE } from "../../common/constants";
+import { ROUTE, retrieveUserInfoFromStorage } from "../../common/constants";
 const Header = () => {
   const navigate = useNavigate();
+  const { userDetails } = retrieveUserInfoFromStorage();
   return (
     <div className="border-b border-b-[#D6EEDA] py-4 flex items-center justify-between px-16">
       <span className="flex  gap-3 items-center">
@@ -18,13 +19,15 @@ const Header = () => {
         trigger="hover"
         content={
           <div className="flex flex-col gap-4">
-            <button
-              onClick={() => {
-                navigate(ROUTE.USER_MGT);
-              }}
-            >
-              Manage Users
-            </button>
+            {userDetails.role === "SUPER_ADMIN" && (
+              <button
+                onClick={() => {
+                  navigate(ROUTE.USER_MGT);
+                }}
+              >
+                Manage Users
+              </button>
+            )}
             <button
               onClick={() => {
                 navigate(ROUTE.INDEX, { replace: true });

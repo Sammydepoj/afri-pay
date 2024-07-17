@@ -7,5 +7,7 @@ export const apiEndpoints = {
     getStatistics: "dashboard",
     getTransactionGrowthRate: "dashboard/transaction-growth",
     getDashboardTransactionsStats: "dashboard/numbers-of-all-transactions",
+    getAllUsers: "profile",
+    addUser: "profile",
   },
 };

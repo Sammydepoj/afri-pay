@@ -36,9 +36,9 @@ const useLogin = () => {
       postUrl: apiEndpoints.auth.login,
       request: payload,
     });
-    const apiResponse = response?.data ?? response?.data?.token;
+    const apiResponse = response?.data;
 
-    if (!apiResponse?.token) {
+    if (!apiResponse?.jwtToken) {
       notification.open({
         message: apiResponse?.failureReason ?? "Something went wrong!",
         type: "error",
@@ -50,9 +50,9 @@ const useLogin = () => {
       });
       sessionStorage.setItem(
         import.meta.env.VITE_APP_TOKEN,
-        Encryption.encrypt(apiResponse?.token)
+        Encryption.encrypt(apiResponse?.jwtToken)
       );
-      handleGetUserInfo(apiResponse?.token);
+      await handleGetUserInfo(apiResponse?.jwtToken);
 
       navigate(ROUTE.DASHBOARD);
     }

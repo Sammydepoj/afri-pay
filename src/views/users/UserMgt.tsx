@@ -8,10 +8,15 @@ import { setAllGlobalKey } from "../../store";
 import CreateUserModal from "./createUserModal";
 import { useNavigate } from "react-router-dom";
 import { ROUTE } from "../../common/constants";
+import useGetAllUsers from "../../hooks/useGetAllUsers";
 
 type TableDataTypes = {
   sn: string;
   email: string;
+  name: string;
+  role: string;
+  firstName: string;
+  lastName: string;
 };
 const UserMgt = () => {
   const dispatch = useAppDispatch();
@@ -21,13 +26,13 @@ const UserMgt = () => {
   const navigate = useNavigate();
   const column: ColumnProps<TableDataTypes>[] = [
     {
-      title: "Serial number",
+      title: "Name",
       ellipsis: true,
       key: "1",
       render(_: any, record: TableDataTypes) {
         return (
           <span className="flex items-center gap-2 text-center">
-            {record.sn}
+            {record.firstName + " " + record.lastName}
           </span>
         );
       },
@@ -44,29 +49,22 @@ const UserMgt = () => {
         );
       },
     },
-  ];
-  const dataSource = [
     {
-      sn: "67896566",
-      email: "user@user.com",
-    },
-    {
-      sn: "67896566",
-      email: "user@user.com",
-    },
-    {
-      sn: "67896566",
-      email: "user@user.com",
-    },
-    {
-      sn: "67896566",
-      email: "user@user.com",
-    },
-    {
-      sn: "67896566",
-      email: "user@user.com",
+      title: "Role",
+      ellipsis: true,
+      key: "3",
+      render(_: any, record: TableDataTypes) {
+        return (
+          <span className="grid place-content-start text-center">
+            {record.role}
+          </span>
+        );
+      },
     },
   ];
+
+  const { allUsers } = useGetAllUsers();
+
   return (
     <div>
       <Header />
@@ -91,8 +89,8 @@ const UserMgt = () => {
       </div>
       <div className="max-w-[30rem] mx-auto">
         <TableComponent
-          dataSource={dataSource}
-          loading={false}
+          dataSource={allUsers.data?.data ?? []}
+          loading={allUsers.isFetching || allUsers.isLoading}
           column={column}
         />
       </div>

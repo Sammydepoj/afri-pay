@@ -68,7 +68,11 @@ const Dashboard = () => {
           transactionGrowthRate.isLoading ||
           transactionGrowthRate.isFetching ||
           transactionStats.isLoading ||
-          transactionStats.isFetching
+          transactionStats.isFetching ||
+          successfulTransactionsCount.isFetching ||
+          successfulTransactionsCount.isLoading ||
+          failedTransactionsCount.isLoading ||
+          failedTransactionsCount.isFetching
         }
       >
         <div className="px-16 flex items-center gap-6 overflow-x-auto justify-between pb-4">
