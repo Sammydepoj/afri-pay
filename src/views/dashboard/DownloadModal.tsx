@@ -1,24 +1,18 @@
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { PageModal } from "../../common/components/modal";
 import { setAllGlobalKey } from "../../store";
-import { Button } from "antd";
-import DownloadIcon from "../../assets/icons/DownloadIcon";
+import { TableDataTypes } from "../../common/components/TransactionsTable";
 
-const DownloadModal = () => {
+const DownloadModal = ({
+  selectedTransaction,
+}: {
+  selectedTransaction: TableDataTypes | undefined;
+}) => {
   const dispatch = useAppDispatch();
   const state = useAppSelector((state) => {
     return state.global;
   });
-  const downloadData = [
-    { type: "Amount", value: " ₦14,000.00" },
-    { type: "Terminal ID", value: " TIDI43532354" },
-    { type: "Transaction date", value: "2 Jul, 2024" },
-    { type: "Time", value: " 13:13pm" },
-    { type: "STAN", value: " 54734" },
-    { type: "Masked PAN", value: " 4548***3434" },
-    { type: "Status", value: "Successful" },
-    { type: "Response Code", value: "00" },
-  ];
+
   return (
     <PageModal
       openModal={state.showDownloadModal}
@@ -32,24 +26,68 @@ const DownloadModal = () => {
     >
       <h5 className="text-lg font-[ibm-bold]">Transaction Details</h5>
       <div className="bg-[#F9FBF9] my-4 p-4 flex flex-col gap-4 rounded-lg">
-        {downloadData?.map((item, index) => (
-          <span className="flex items-center justify-between" key={index}>
-            <p className="text-[#284E32] text-sm font-[ibm-medium]">
-              {item.type}
-            </p>
-            <p className="text-[#284E32] text-base font-[ibm-semibold]">
-              {item.value}
-            </p>
-          </span>
-        ))}
+        <span className="flex items-center justify-between">
+          <p className="text-[#284E32] text-sm font-[ibm-medium]">Amount</p>
+          <p className="text-[#284E32] text-base font-[ibm-semibold]">
+            ₦{selectedTransaction?.amount}
+          </p>
+        </span>
+        <span className="flex items-center justify-between">
+          <p className="text-[#284E32] text-sm font-[ibm-medium]">
+            Terminal ID
+          </p>
+          <p className="text-[#284E32] text-base font-[ibm-semibold]">
+            {selectedTransaction?.terminalId}
+          </p>
+        </span>
+        <span className="flex items-center justify-between">
+          <p className="text-[#284E32] text-sm font-[ibm-medium]">
+            Transaction date
+          </p>
+          <p className="text-[#284E32] text-base font-[ibm-semibold]">
+            {selectedTransaction?.transactionDate}
+          </p>
+        </span>
+        <span className="flex items-center justify-between">
+          <p className="text-[#284E32] text-sm font-[ibm-medium]">Time</p>
+          <p className="text-[#284E32] text-base font-[ibm-semibold]">
+            {selectedTransaction?.timeLocalTransaction}
+          </p>
+        </span>
+        <span className="flex items-center justify-between">
+          <p className="text-[#284E32] text-sm font-[ibm-medium]">STAN</p>
+          <p className="text-[#284E32] text-base font-[ibm-semibold]">
+            {selectedTransaction?.stan}
+          </p>
+        </span>
+        <span className="flex items-center justify-between">
+          <p className="text-[#284E32] text-sm font-[ibm-medium]">Masked PAN</p>
+          <p className="text-[#284E32] text-base font-[ibm-semibold]">
+            {selectedTransaction?.pan}
+          </p>
+        </span>
+        <span className="flex items-center justify-between">
+          <p className="text-[#284E32] text-sm font-[ibm-medium]">Status</p>
+          <p className="text-[#284E32] text-base font-[ibm-semibold]">
+            {selectedTransaction?.transactionStatus}
+          </p>
+        </span>
+        <span className="flex items-center justify-between">
+          <p className="text-[#284E32] text-sm font-[ibm-medium]">
+            Response Code
+          </p>
+          <p className="text-[#284E32] text-base font-[ibm-semibold]">
+            {selectedTransaction?.responseCode}
+          </p>
+        </span>
       </div>
       <div className="flex items-center justify-center">
-        <Button
+        {/* <Button
           icon={<DownloadIcon />}
           className="py-6 bg-[#374D41] hover:!bg-[#374D41] text-white hover:!text-white"
         >
           Download
-        </Button>
+        </Button> */}
       </div>
     </PageModal>
   );

@@ -22,7 +22,7 @@ import useGetDashboardStats from "../../hooks/useGetDashboardStats";
 import { useState } from "react";
 import { copyTextToClipboard } from "../../utils/copyToClipboard";
 
-type TableDataTypes = {
+export type TableDataTypes = {
   accountType: string;
   amount: string;
   authorizationCode: string;
@@ -91,6 +91,8 @@ const TransactionsTable = () => {
   const [selectedFilter, setSelectedFilter] = useState<string>("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [selectedTransaction, setSelectedTransaction] =
+    useState<TableDataTypes>();
   const { dashboardStatistics } = useGetDashboardStats({
     fromDate: startDate,
     toDate: endDate,
@@ -189,7 +191,7 @@ const TransactionsTable = () => {
       key: "6",
       fixed: "right",
       width: "70px",
-      render: () => {
+      render: (_: any, record: TableDataTypes) => {
         return (
           <Dropdown
             placement="top"
@@ -204,6 +206,7 @@ const TransactionsTable = () => {
                         dispatch(
                           setAllGlobalKey({ ...state, showDownloadModal: true })
                         );
+                        setSelectedTransaction(record);
                       }}
                       className="w-20 flex z-50 items-center justify-start text-[1rem] gap-2"
                     >
@@ -226,9 +229,6 @@ const TransactionsTable = () => {
     if (dates && dates.length === 2) {
       const startCustomFormat = dates[0]?.format("DD-MM-YYYY");
       const endCustomFormat = dates[1]?.format("DD-MM-YYYY");
-
-      // const startISO = dayjs(startCustomFormat, "DD-MM-YYYY").toISOString();
-      // const endISO = dayjs(endCustomFormat, "DD-MM-YYYY").toISOString();
       setStartDate(startCustomFormat);
       setEndDate(endCustomFormat);
     } else {
@@ -269,7 +269,9 @@ const TransactionsTable = () => {
 
   return (
     <div className="mx-4 md:mx-16">
-      {state.showDownloadModal && <DownloadModal />}
+      {state.showDownloadModal && (
+        <DownloadModal selectedTransaction={selectedTransaction} />
+      )}
       <div className="border-3 mt-8 flex items-center justify-between gap-4  mb-4">
         <div className="flex items-center gap-5">
           <Input
