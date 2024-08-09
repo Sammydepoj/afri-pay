@@ -7,8 +7,7 @@ const ChangePasswordForm = () => {
   const state = useAppSelector((state) => {
     return state.global;
   });
-  const { handleChangePassword, handleChangePasswordResult } =
-    useChangePassword();
+  const { handleChangePasswordResult } = useChangePassword();
   return (
     <section className="relative min-h-[100svh] p-8 flex flex-col items-center justify-center">
       {/* <img src={Logo} className="absolute top-6 left-8" /> */}
@@ -27,12 +26,21 @@ const ChangePasswordForm = () => {
           className="grid gap-4 "
           requiredMark="optional"
           onFinish={(e) => {
-            // handleChangePassword
+            // handleChangePassword({
+            //   email: state.userEmail as string,
+            //   otp: e?.otp as number,
+            //   changePasswordRequestDTO: {
+            //     confirmPassword: e?.confirmPassword,
+            //     oldPassword: e?.password,
+            //   },
+            // });
             console.log({
-              otp: e?.otp,
-              email: state.userEmail,
-              oldPassword: e?.password,
-              confirmPassword: e?.confirmPassword,
+              email: state.userEmail as string,
+              otp: e?.otp as number,
+              changePasswordRequestDTO: {
+                confirmPassword: e?.confirmPassword,
+                oldPassword: e?.password,
+              },
             });
           }}
         >

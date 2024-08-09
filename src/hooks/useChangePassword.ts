@@ -10,7 +10,6 @@ export type ChangePasswordRequestType = {
   email: string;
   changePasswordRequestDTO: {
     oldPassword: string;
-    password: string;
     confirmPassword: string;
   };
 };
