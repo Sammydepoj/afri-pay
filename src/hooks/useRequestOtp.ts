@@ -18,7 +18,7 @@ const useSendOtpForOtForPasswordChange = () => {
       postUrl: `${apiEndpoints.auth.requestOtpForPasswordChange}${email}`,
     });
     const apiResponse = response?.data ?? response?.error?.data;
-    console.log(apiResponse);
+
     if (apiResponse?.responseCode !== RESPONSE_CODE.successful) {
       // REMEMBER TO REMOVE THIS
       dispatch(

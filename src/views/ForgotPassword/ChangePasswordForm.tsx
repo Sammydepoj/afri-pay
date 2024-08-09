@@ -1,11 +1,14 @@
 import { Button, Form, Input } from "antd";
 import { useAppSelector } from "../../store/hooks";
+import useChangePassword from "../../hooks/useChangePassword";
 // import Logo from "../../assets/logo.png";
 
 const ChangePasswordForm = () => {
   const state = useAppSelector((state) => {
     return state.global;
   });
+  const { handleChangePassword, handleChangePasswordResult } =
+    useChangePassword();
   return (
     <section className="relative min-h-[100svh] p-8 flex flex-col items-center justify-center">
       {/* <img src={Logo} className="absolute top-6 left-8" /> */}
@@ -24,6 +27,7 @@ const ChangePasswordForm = () => {
           className="grid gap-4 "
           requiredMark="optional"
           onFinish={(e) => {
+            // handleChangePassword
             console.log({
               otp: e?.otp,
               email: state.userEmail,
@@ -81,6 +85,7 @@ const ChangePasswordForm = () => {
           <Button
             htmlType="submit"
             className="bg-[#374D41] hover:!bg-[#374D41] !text-white py-6 font-[ibm-medium] "
+            loading={handleChangePasswordResult.isLoading}
           >
             Submit
           </Button>
