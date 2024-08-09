@@ -28,7 +28,7 @@ export const baseQueryWithReauth: (baseQuery: BaseQueryType) => BaseQueryType =
     const result = await baseQuery(args, api, extraOptions);
     if (result.error && result.error.status === 401) {
       sessionStorage.clear();
-      window.location.href = ROUTE.INDEX;
+      // window.location.href = ROUTE.INDEX;
     }
     return result;
   };

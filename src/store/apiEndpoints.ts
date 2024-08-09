@@ -2,6 +2,8 @@ export const apiEndpoints = {
   auth: {
     login: "authenticate",
     getUserInfo: "profile/single-user",
+    requestOtpForPasswordChange: "authenticate/request-reset-password/",
+    changePassword: "authenticate/reset-password",
   },
   dashboard: {
     getStatistics: "dashboard",

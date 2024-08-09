@@ -28,5 +28,7 @@ export namespace State {
     selectedRowKeys?: React.Key[];
     showDownloadModal?: boolean;
     showAddUserModal?: boolean;
+    currentForgotPasswordStep: number;
+    userEmail?: string;
   }
 }

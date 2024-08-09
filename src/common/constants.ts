@@ -38,6 +38,7 @@ export enum ROUTE {
   INDEX = "/",
   DASHBOARD = "/dashboard",
   USER_MGT = "/users",
+  FORGOT_PASSWORD = "/forgot-password",
   PAGE_NOT_FOUND = "*",
 }
 

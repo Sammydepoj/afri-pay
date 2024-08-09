@@ -26,7 +26,7 @@ const useCreateUser = () => {
     });
 
     const apiResponse = response?.data ?? response?.data?.token;
-    console.log(response);
+
     if (apiResponse?.responseCode !== RESPONSE_CODE.successful) {
       notification.open({
         message: apiResponse?.failureReason ?? "Something went wrong!",

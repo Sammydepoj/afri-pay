@@ -1,11 +1,15 @@
 import { ROUTE } from "../common/constants";
-import { Login, Dashboard, UserMgt } from "./pageRoutes";
+import { Login, Dashboard, UserMgt, ForgotPassword } from "./pageRoutes";
 import { ProtectedRoutes } from "./protected-routes";
 
 export const routes = [
   {
     element: <Login />,
     path: ROUTE.INDEX,
+  },
+  {
+    element: <ForgotPassword />,
+    path: ROUTE.FORGOT_PASSWORD,
   },
   {
     element: (

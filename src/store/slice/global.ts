@@ -7,6 +7,8 @@ const initialState: State.Global = {
   selectUrl: "",
   page: 1,
   pageSize: 10,
+  currentForgotPasswordStep: 0,
+  
 };
 
 const GlobalSlice = createSlice({
