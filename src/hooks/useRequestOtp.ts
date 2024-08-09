@@ -20,14 +20,6 @@ const useSendOtpForOtForPasswordChange = () => {
     const apiResponse = response?.data ?? response?.error?.data;
 
     if (apiResponse?.responseCode !== RESPONSE_CODE.successful) {
-      // REMEMBER TO REMOVE THIS
-      dispatch(
-        setAllGlobalKey({
-          ...state,
-          currentForgotPasswordStep: state.currentForgotPasswordStep + 1,
-          userEmail: email,
-        })
-      );
       notification.open({
         message: apiResponse?.failureReason ?? "Something went wrong!",
         type: "error",

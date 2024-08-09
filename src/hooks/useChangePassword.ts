@@ -26,7 +26,7 @@ const useChangePassword = () => {
       request: payload,
     });
     const apiResponse = response?.data ?? response?.error?.data;
-    console.log(apiResponse);
+   
     if (apiResponse?.responseCode !== RESPONSE_CODE.successful) {
       notification.open({
         message: apiResponse?.failureReason ?? "Something went wrong!",
