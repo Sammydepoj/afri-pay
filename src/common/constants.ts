@@ -49,12 +49,7 @@ export enum FORM_METHODS {
 
 export const RESPONSE_CODE = {
   successful: "00",
-  badRequest: "400",
-  noData: "201",
-  internalServerError: "500",
-  dataDuplication: " 230",
   unAuthorized: "401",
-  invalidToken: "400",
 };
 export interface UserInfo {
   firstName: string;

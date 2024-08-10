@@ -4,9 +4,15 @@ import Dropdown from "../../assets/icons/Dropdown";
 import userImg from "../../assets/svg/user-img.svg";
 import { useNavigate } from "react-router-dom";
 import { ROUTE, retrieveUserInfoFromStorage } from "../../common/constants";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { setAllGlobalKey } from "../../store";
 const Header = () => {
   const navigate = useNavigate();
   const { userDetails } = retrieveUserInfoFromStorage();
+  const state = useAppSelector((state) => {
+    return state.global;
+  });
+  const dispatch = useAppDispatch();
   return (
     <div className="border-b border-b-[#D6EEDA] py-4 flex items-center justify-between px-16">
       <span className="flex  gap-3 items-center">
@@ -19,7 +25,7 @@ const Header = () => {
         trigger="hover"
         content={
           <div className="flex flex-col gap-4">
-            {userDetails.role === "SUPER_ADMIN" && (
+            {userDetails?.role === "SUPER_ADMIN" && (
               <button
                 onClick={() => {
                   navigate(ROUTE.USER_MGT);
@@ -28,6 +34,18 @@ const Header = () => {
                 Manage Users
               </button>
             )}
+            <button
+              onClick={() => {
+                dispatch(
+                  setAllGlobalKey({
+                    ...state,
+                    showChangePasswordModal: !state.showChangePasswordModal,
+                  })
+                );
+              }}
+            >
+              Change Password
+            </button>
             <button
               onClick={() => {
                 navigate(ROUTE.INDEX, { replace: true });

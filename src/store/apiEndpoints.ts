@@ -3,7 +3,7 @@ export const apiEndpoints = {
     login: "authenticate",
     getUserInfo: "profile/single-user",
     requestOtpForPasswordChange: "authenticate/request-reset-password/",
-    changePassword: "authenticate/reset-password",
+    resetPassword: "authenticate/reset-password",
   },
   dashboard: {
     getStatistics: "dashboard",
@@ -11,5 +11,6 @@ export const apiEndpoints = {
     getDashboardTransactionsStats: "dashboard/numbers-of-all-transactions",
     getAllUsers: "profile",
     addUser: "profile",
+    changePassword: "profile/changePassword",
   },
 };

@@ -26,7 +26,7 @@ const useSendOtpForOtForPasswordChange = () => {
       });
     } else {
       notification.open({
-        message: apiResponse?.data,
+        message: apiResponse?.status,
         type: "success",
       });
       dispatch(

@@ -30,5 +30,6 @@ export namespace State {
     showAddUserModal?: boolean;
     currentForgotPasswordStep: number;
     userEmail?: string;
+    showChangePasswordModal?: boolean;
   }
 }

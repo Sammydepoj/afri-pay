@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { ROUTE } from "../../common/constants";
 
 const Login = () => {
-  const { handleLogin, handleLoginResponse } = useLogin();
+  const { handleLogin, handleLoginResponse, loading } = useLogin();
   return (
     <section className="relative min-h-[100svh] p-8 flex flex-col items-center justify-center">
       {/* <img src={Logo} className="absolute top-6 left-8" /> */}
@@ -58,7 +58,7 @@ const Login = () => {
           <Button
             htmlType="submit"
             className="bg-[#374D41] hover:!bg-[#374D41] !text-white py-6 font-[ibm-medium] "
-            loading={handleLoginResponse.isLoading}
+            loading={handleLoginResponse.isLoading || loading}
           >
             Log in
           </Button>

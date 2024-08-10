@@ -2,27 +2,29 @@
 import { notification } from "antd";
 import { setAllGlobalKey, usePostDataMutation } from "../store";
 import { apiEndpoints } from "../store/apiEndpoints";
-import { RESPONSE_CODE } from "../common/constants";
+import { RESPONSE_CODE, ROUTE } from "../common/constants";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { useNavigate } from "react-router-dom";
 
-export type ChangeUserPasswordRequestType = {
-  password: string;
-  oldPassword: string;
-  confirmPassword: string;
+export type ChangePasswordRequestType = {
+  otp: number;
+  email: string;
+  changePasswordRequestDTO: {
+    oldPassword: string;
+    confirmPassword: string;
+  };
 };
-const useChangeUserPassword = () => {
+const useChangePassword = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const state = useAppSelector((state) => {
     return state.global;
   });
-  const [changePassword, handleChangeUserPasswordResult] =
-    usePostDataMutation();
+  const [resetPassword, handleChangePasswordResult] = usePostDataMutation();
 
-  const handleChangeUserPassword = async (
-    payload: ChangeUserPasswordRequestType
-  ) => {
-    const response: any = await changePassword({
-      postUrl: `${apiEndpoints.dashboard.changePassword}`,
+  const handleChangePassword = async (payload: ChangePasswordRequestType) => {
+    const response: any = await resetPassword({
+      postUrl: `${apiEndpoints.auth.resetPassword}`,
       request: payload,
     });
     const apiResponse = response?.data ?? response?.error?.data;
@@ -37,14 +39,15 @@ const useChangeUserPassword = () => {
         message: apiResponse?.status,
         type: "success",
       });
-      dispatch(setAllGlobalKey({ ...state, showChangePasswordModal: false }));
+      dispatch(setAllGlobalKey({ ...state, currentForgotPasswordStep: 0 }));
+      navigate(ROUTE.INDEX);
     }
   };
 
   return {
-    handleChangeUserPassword,
-    handleChangeUserPasswordResult,
+    handleChangePassword,
+    handleChangePasswordResult,
   };
 };
 
-export default useChangeUserPassword;
+export default useChangePassword;

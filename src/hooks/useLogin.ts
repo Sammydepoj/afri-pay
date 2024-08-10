@@ -5,19 +5,22 @@ import { apiEndpoints } from "../store/apiEndpoints";
 import { Encryption } from "../common/utils/encryption";
 import { ROUTE } from "../common/constants";
 import { notification } from "antd";
+import { useState } from "react";
 
 const useLogin = () => {
+  const [loading, setLoading] = useState(false);
   const [login, handleLoginResponse] = useLoginMutation();
   const navigate = useNavigate();
 
   const handleGetUserInfo = async (token: string) => {
+    setLoading(true);
     try {
       const response = await fetch(
         import.meta.env.VITE_APP_BASE_URL + apiEndpoints.auth.getUserInfo,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       const data = await response.json();
-
+      setLoading(false);
       if (data.responseCode !== "00") {
         notification.open({ message: "Something went wrong", type: "error" });
       } else {
@@ -27,6 +30,7 @@ const useLogin = () => {
         );
       }
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };
@@ -57,7 +61,7 @@ const useLogin = () => {
       navigate(ROUTE.DASHBOARD);
     }
   };
-  return { handleLogin, handleLoginResponse };
+  return { handleLogin, handleLoginResponse, loading };
 };
 
 export default useLogin;

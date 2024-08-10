@@ -11,6 +11,8 @@ import useGetTransactionGrowthRate from "../../hooks/useGetTransactionsGrowth";
 import useGetTransactionStats from "../../hooks/useGetTransactionsStatistics";
 import useGetDashboardStats from "../../hooks/useGetDashboardStats";
 import { retrieveUserInfoFromStorage } from "../../common/constants";
+import { useAppSelector } from "../../store/hooks";
+import ChangePasswordModal from "./ChangePasswordModal";
 
 const Dashboard = () => {
   const { transactionGrowthRate } = useGetTransactionGrowthRate();
@@ -24,7 +26,9 @@ const Dashboard = () => {
       status: "declined",
     }
   );
-
+  const state = useAppSelector((state) => {
+    return state.global;
+  });
   const cardData = [
     {
       title: "Transaction Growth Rate",
@@ -54,6 +58,7 @@ const Dashboard = () => {
 
   return (
     <div>
+      {state.showChangePasswordModal && <ChangePasswordModal />}
       <Header />
       <div className="p-16">
         <p className="text-3xl font-[ibm-semibold]">
@@ -82,7 +87,7 @@ const Dashboard = () => {
               key={index}
             >
               <span className="flex gap-2 items-center">
-                {item.icon}{" "}
+                {item.icon}
                 <p className="text-base font-[ibm-bold] whitespace-nowrap">
                   {item.title}
                 </p>
@@ -92,7 +97,7 @@ const Dashboard = () => {
                   <p className="text-[#1E1E1E] font-[ibm-semibold] text-3xl ">
                     {item.amount}
                   </p>
-                  {item.icon2}{" "}
+                  {item.icon2}
                 </span>
                 <p className="text-[#656565] absolute bottom-0 right-0">
                   {item.otherText}
@@ -102,7 +107,7 @@ const Dashboard = () => {
           ))}
         </div>
       </Spin>
-      <TransactionsTable />{" "}
+      <TransactionsTable />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import ForgotPasswordForm from "./ForgotPasswordForm";
-import ChangePasswordForm from "./ChangePasswordForm";
+import ChangePasswordForm from "./ResetPasswordForm";
 import { useAppSelector } from "../../store/hooks";
 // import Logo from "../../assets/logo.png";
 

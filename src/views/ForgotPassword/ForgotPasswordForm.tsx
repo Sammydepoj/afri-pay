@@ -1,7 +1,16 @@
 import { Button, Form, Input } from "antd";
 import useSendOtpForOtForPasswordChange from "../../hooks/useRequestOtp";
+import { useNavigate } from "react-router-dom";
+import { ROUTE } from "../../common/constants";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { setAllGlobalKey } from "../../store";
 
 const ForgotPasswordForm = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const state = useAppSelector((state) => {
+    return state.global;
+  });
   const {
     handleSendOtpForPasswordChangeResult,
     handleSendOtpForPasswordChange,
@@ -11,6 +20,16 @@ const ForgotPasswordForm = () => {
       {/* <img src={Logo} className="absolute top-6 left-8" /> */}
       <div className="max-w-[521px] w-full p-8 shadow-lg rounded-3xl">
         {/* <img src={Logo} className="mx-auto" /> */}
+        <button
+          onClick={() => {
+            navigate(ROUTE.INDEX);
+            dispatch(
+              setAllGlobalKey({ ...state, currentForgotPasswordStep: 0 })
+            );
+          }}
+        >
+          Back to Login
+        </button>
         <h3 className="text-[#151414] text-4xl text-center mt-16 mb-3 font-[ibm-bold]">
           Forgot Password
         </h3>
