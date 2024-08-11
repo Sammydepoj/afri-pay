@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { PageModal } from "../../common/components/modal";
 import { setAllGlobalKey } from "../../store";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, notification } from "antd";
 import useChangeUserPassword from "../../hooks/useChangePassword";
 
 const ChangePasswordModal = () => {
@@ -32,6 +32,16 @@ const ChangePasswordModal = () => {
         labelCol={{ span: 24 }}
         requiredMark="optional"
         onFinish={(e) => {
+          if (
+            e?.oldPassword === e?.password ||
+            e?.oldPassword === e?.confirmPassword
+          ) {
+            notification.open({
+              message: "Old password can not be the same with new password",
+              type: "error",
+            });
+            return;
+          }
           handleChangeUserPassword({
             password: e?.password,
             confirmPassword: e?.confirmPassword,
