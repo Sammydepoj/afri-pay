@@ -50,10 +50,8 @@ const ChangePasswordForm = () => {
             handleChangePassword({
               email: state.userEmail as string,
               otp: e?.otp as number,
-              changePasswordRequestDTO: {
-                confirmPassword: e?.confirmPassword,
-                oldPassword: e?.password,
-              },
+              password: e?.password,
+              confirmPassword: e?.confirmPassword,
             });
           }}
         >

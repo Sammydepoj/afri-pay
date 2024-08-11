@@ -9,10 +9,8 @@ import { useNavigate } from "react-router-dom";
 export type ChangePasswordRequestType = {
   otp: number;
   email: string;
-  changePasswordRequestDTO: {
-    oldPassword: string;
-    confirmPassword: string;
-  };
+  password: string;
+  confirmPassword: string;
 };
 const useChangePassword = () => {
   const dispatch = useAppDispatch();

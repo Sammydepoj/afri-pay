@@ -2,8 +2,9 @@
 import { notification } from "antd";
 import { setAllGlobalKey, usePostDataMutation } from "../store";
 import { apiEndpoints } from "../store/apiEndpoints";
-import { RESPONSE_CODE } from "../common/constants";
+import { RESPONSE_CODE, ROUTE } from "../common/constants";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { useNavigate } from "react-router-dom";
 
 export type ChangeUserPasswordRequestType = {
   password: string;
@@ -15,6 +16,7 @@ const useChangeUserPassword = () => {
   const state = useAppSelector((state) => {
     return state.global;
   });
+  const navigate = useNavigate();
   const [changePassword, handleChangeUserPasswordResult] =
     usePostDataMutation();
 
@@ -34,9 +36,11 @@ const useChangeUserPassword = () => {
       });
     } else {
       notification.open({
-        message: apiResponse?.status,
+        message: apiResponse?.status + " Please login with the new details",
         type: "success",
       });
+      sessionStorage.clear();
+      navigate(ROUTE.INDEX, { replace: true });
       dispatch(setAllGlobalKey({ ...state, showChangePasswordModal: false }));
     }
   };
