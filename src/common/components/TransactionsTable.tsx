@@ -328,7 +328,7 @@ const TransactionsTable = () => {
           <RangePicker
             suffixIcon={<CalendarIcon />}
             className="py-3"
-            placeholder={["Select dates", "Selct dates"]}
+            placeholder={["Select dates", "Select dates"]}
             onChange={handleDateChange}
           />
         </div>
