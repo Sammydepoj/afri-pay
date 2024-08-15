@@ -1,12 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {
-  Button,
-  DatePicker,
-  Dropdown,
-  Input,
-  Popover,
-  notification,
-} from "antd";
+import { Button, DatePicker, Input, Popover, notification } from "antd";
 import { ColumnProps } from "antd/es/table";
 import { TableComponent } from "./table-component";
 import more from "../../assets/svg/more-action.svg";
@@ -131,7 +124,7 @@ const TransactionsTable = () => {
       render(_: any, record: TableDataTypes) {
         return (
           <span className="grid place-content-start text-center">
-            ₦{record.amount}
+            ₦{new Intl.NumberFormat().format(Number(record.amount))}
           </span>
         );
       },
@@ -193,34 +186,27 @@ const TransactionsTable = () => {
       width: "70px",
       render: (_: any, record: TableDataTypes) => {
         return (
-          <Dropdown
+          <Popover
             placement="top"
-            trigger={["hover"]}
-            menu={{
-              items: [
-                {
-                  key: "1",
-                  label: (
-                    <button
-                      onClick={() => {
-                        dispatch(
-                          setAllGlobalKey({ ...state, showDownloadModal: true })
-                        );
-                        setSelectedTransaction(record);
-                      }}
-                      className="w-20 flex z-50 items-center justify-start text-[1rem] gap-2"
-                    >
-                      Download
-                    </button>
-                  ),
-                },
-              ],
-            }}
+            trigger="hover"
+            content={
+              <button
+                onClick={() => {
+                  dispatch(
+                    setAllGlobalKey({ ...state, showDownloadModal: true })
+                  );
+                  setSelectedTransaction(record);
+                }}
+                // className="w-20 flex z-50 items-center justify-start text-[1rem] gap-2"
+              >
+                Download
+              </button>
+            }
           >
-            <button>
+            <button className="w-full">
               <img src={more} alt="" />
             </button>
-          </Dropdown>
+          </Popover>
         );
       },
     },
@@ -306,6 +292,7 @@ const TransactionsTable = () => {
             arrow={false}
           >
             <Button
+              iconPosition="end"
               icon={
                 selectedFilter.length > 1 ? (
                   <button

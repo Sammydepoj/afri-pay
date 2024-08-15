@@ -6,7 +6,8 @@ import DownloadIcon from "../../assets/icons/DownloadIcon";
 import { Button } from "antd";
 import html2canvas from "html2canvas";
 import fileDownload from "js-file-download";
-import React, { useRef } from "react";
+import { useRef } from "react";
+import Logo from "../../assets/logo.png";
 
 const DownloadModal = ({
   selectedTransaction,
@@ -39,12 +40,16 @@ const DownloadModal = ({
       modalWith="25rem"
     >
       <div ref={contentRef}>
+        <img src={Logo} className="text-center mx-auto mb-3" />
         <h5 className="text-lg font-[ibm-bold]">Transaction Details</h5>
         <div className="bg-[#F9FBF9] my-4 p-4 flex flex-col gap-4 rounded-lg">
           <span className="flex items-center justify-between">
             <p className="text-[#284E32] text-sm font-[ibm-medium]">Amount</p>
             <p className="text-[#284E32] text-base font-[ibm-semibold]">
-              ₦{selectedTransaction?.amount}
+              ₦
+              {new Intl.NumberFormat().format(
+                Number(selectedTransaction?.amount)
+              )}
             </p>
           </span>
           <span className="flex items-center justify-between">
