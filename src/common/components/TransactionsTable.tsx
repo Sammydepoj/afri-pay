@@ -214,8 +214,8 @@ const TransactionsTable = () => {
   ];
   const handleDateChange = (dates: any[] | null) => {
     if (dates && dates.length === 2) {
-      const startCustomFormat = dates[0]?.format("YYYY-MM-DD");
-      const endCustomFormat = dates[1]?.format("YYYY-MM-DD");
+      const startCustomFormat = dates[0]?.format("DD-MM-YYYY");
+      const endCustomFormat = dates[1]?.format("DD-MM-YYYY");
       setStartDate(startCustomFormat);
       setEndDate(endCustomFormat);
     } else {
