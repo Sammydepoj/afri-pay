@@ -14,6 +14,7 @@ import DownloadIcon from "../../assets/icons/DownloadIcon";
 import useGetDashboardStats from "../../hooks/useGetDashboardStats";
 import { useState } from "react";
 import { copyTextToClipboard } from "../../utils/copyToClipboard";
+import dayjs from "dayjs";
 
 export type TableDataTypes = {
   accountType: string;
@@ -330,6 +331,9 @@ const TransactionsTable = () => {
             className="py-3"
             placeholder={["Select dates", "Select dates"]}
             onChange={handleDateChange}
+            disabledDate={(current) => {
+              return current && current > dayjs().endOf("day");
+            }}
           />
         </div>
         <Popover
